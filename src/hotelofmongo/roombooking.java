@@ -7,6 +7,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -85,9 +87,10 @@ public class roombooking extends javax.swing.JFrame {
         JbtnDelete = new javax.swing.JButton();
         JbtnReset = new javax.swing.JButton();
         JbtnReport1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jlogout = new javax.swing.JButton();
         JbtnTotalcost1 = new javax.swing.JButton();
         JbtnReport2 = new javax.swing.JButton();
+        jreport = new javax.swing.JButton();
         JDateOfBirth = new com.toedter.calendar.JDateChooser();
         JCheckInDate = new com.toedter.calendar.JDateChooser();
         JCheckOutDate = new com.toedter.calendar.JDateChooser();
@@ -201,6 +204,17 @@ public class roombooking extends javax.swing.JFrame {
         jPanel1.add(JTax, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 160, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 320, 180));
+
+        JCustomerRef.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                JCustomerRefFocusGained(evt);
+            }
+        });
+        JCustomerRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCustomerRefActionPerformed(evt);
+            }
+        });
         getContentPane().add(JCustomerRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 145, -1));
 
         JFirstName.setText("\n");
@@ -279,14 +293,14 @@ public class roombooking extends javax.swing.JFrame {
         });
         jPanel2.add(JbtnReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 200, 40));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jlogout.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jlogout.setText("Logout");
+        jlogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jlogoutActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 200, 40));
+        jPanel2.add(jlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 200, 40));
 
         JbtnTotalcost1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         JbtnTotalcost1.setText("Get Details");
@@ -306,7 +320,16 @@ public class roombooking extends javax.swing.JFrame {
         });
         jPanel2.add(JbtnReport2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 200, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 270, 450));
+        jreport.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jreport.setText("Report");
+        jreport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jreportActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jreport, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 200, 40));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 270, 480));
         getContentPane().add(JDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 150, -1));
         getContentPane().add(JCheckInDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 150, 30));
         getContentPane().add(JCheckOutDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 150, -1));
@@ -510,17 +533,17 @@ public class roombooking extends javax.swing.JFrame {
             String roomtype=JRoomType.getSelectedItem().toString();
             String roomno=JRoomNo.getSelectedItem().toString();
             String total=JTotal.getText(); 
+            String ftotal = "0";
             
             BasicDBObject doc = new BasicDBObject("CustomerRef",customerRef).append("Firstname",firstname).append("Surname",surname).append("Address",address).
                     append("Postcode", postcode).append("CustomerMobile", customermobile).append("Email",email).append("Nationality",combo1).append("IDtype",idtype).
                     append("Gender", gender).append("Indate", Indate).append("Outdate",outdate).append("Dob",dob).append("Roomtype", roomtype).
-                    append("RoomNo",roomno).append("Total",total);
+                    append("RoomNo",roomno).append("Total",total).append("FoodTotal",ftotal);
             coll.insert(doc);
             
-            DBCollection coll1=dbs.getCollection("food");
-            BasicDBObject doc1 = new BasicDBObject("CustomerMobile",customermobile).append("FoodTotal", "0");
-            coll1.insert(doc1);
-            JCustomerRef.setText(null);
+            
+            
+        JCustomerRef.setText(null);
         JFirstName.setText(null);
         JSurname.setText(null);
         JAddress1.setText(null);
@@ -543,9 +566,11 @@ public class roombooking extends javax.swing.JFrame {
             Logger.getLogger(roombooking.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, "Data uploaded successfully","Hotel Management System",JOptionPane.OK_OPTION);
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlogoutActionPerformed
         // TODO add your handling code here:
         if(JOptionPane.showConfirmDialog( frame, "Confirm if you want to logout","Hotel Management System", JOptionPane.YES_NO_OPTION )== JOptionPane.YES_NO_OPTION)
         {
@@ -553,7 +578,7 @@ public class roombooking extends javax.swing.JFrame {
             new login().setVisible(true);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jlogoutActionPerformed
 
     private void JEmailIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JEmailIDActionPerformed
         // TODO add your handling code here:
@@ -640,8 +665,40 @@ public class roombooking extends javax.swing.JFrame {
 
     private void JbtnReport2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnReport2ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new foodbillings().setVisible(true);
     }//GEN-LAST:event_JbtnReport2ActionPerformed
+
+    private void jreportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jreportActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new report().setVisible(true);
+    }//GEN-LAST:event_jreportActionPerformed
+
+    private void JCustomerRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCustomerRefActionPerformed
+        
+            
+    }//GEN-LAST:event_JCustomerRefActionPerformed
+
+    private void JCustomerRefFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JCustomerRefFocusGained
+        // TODO add your handling code here:
+        try {
+            MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+            DB dbs = mongoClient.getDB("MongoHotel");
+            DBCollection coll = dbs.getCollection("hotelsystem");
+            BasicDBObject sortObject = new BasicDBObject().append("_id", -1);
+            DBCursor cur = coll.find().sort(sortObject).limit(1);
+            DBObject obj = cur.next();
+            String cref = (String)obj.get("CustomerRef");
+            //DBObject obj = cur.one();
+            int res=Integer.parseInt(cref);
+            System.out.print(res+1);
+            cref = Integer.toString(res+1);
+            JCustomerRef.setText(cref);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(roombooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_JCustomerRefFocusGained
 
     /**
      * @param args the command line arguments
@@ -701,7 +758,6 @@ public class roombooking extends javax.swing.JFrame {
     private javax.swing.JButton JbtnReset;
     private javax.swing.JButton JbtnTotalcost;
     private javax.swing.JButton JbtnTotalcost1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -730,5 +786,7 @@ public class roombooking extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
+    private javax.swing.JButton jlogout;
+    private javax.swing.JButton jreport;
     // End of variables declaration//GEN-END:variables
 }

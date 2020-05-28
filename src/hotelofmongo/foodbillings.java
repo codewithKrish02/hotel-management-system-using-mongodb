@@ -9,10 +9,6 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -87,64 +83,50 @@ public class foodbillings extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("FOOD BILLING");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(160, 80, 180, 40);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, 40));
 
         jLabel2.setText("IDLY:");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(160, 170, 24, 13);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 40, -1));
 
         jLabel3.setText("DOSA:");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(150, 210, 30, 13);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 210, 50, -1));
 
         jLabel4.setText("VADA:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(150, 250, 30, 13);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 250, 50, -1));
 
         jLabel5.setText("PURI:");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(150, 290, 26, 13);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 290, 50, -1));
 
         jLabel6.setText("PONGAL:");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(130, 330, 41, 13);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 330, 50, -1));
 
         jLabel7.setText("ONION DOSA:");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(110, 370, 64, 13);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 370, 80, -1));
 
         jLabel8.setText("MYSORE BONDA:");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(90, 410, 78, 13);
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 100, -1));
 
         jLabel9.setText("VEG BIRIYANI:");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(100, 450, 66, 13);
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 80, -1));
 
         jLabel10.setText("CHICKEN BIRIYANI:");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(70, 490, 87, 13);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 110, -1));
 
         jLabel11.setText("TOTAL:");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(140, 590, 35, 13);
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 590, 50, -1));
 
         jLabel12.setText("LIST");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(150, 130, 21, 13);
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
         jLabel13.setText("NO OF ITEMS");
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(250, 130, 62, 13);
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 130, 90, -1));
 
         jLabel14.setText("PRICE");
-        jPanel1.add(jLabel14);
-        jLabel14.setBounds(380, 130, 40, 13);
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 40, -1));
 
         jTexteb.setText("0");
         jTexteb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,8 +134,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextebMouseClicked(evt);
             }
         });
-        jPanel1.add(jTexteb);
-        jTexteb.setBounds(190, 530, 180, 19);
+        jPanel1.add(jTexteb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, 180, -1));
 
         jTextidly.setText("0");
         jTextidly.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,8 +142,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextidlyMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextidly);
-        jTextidly.setBounds(190, 170, 180, 19);
+        jPanel1.add(jTextidly, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 180, -1));
 
         jTextdosa.setText("0");
         jTextdosa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,8 +155,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextdosaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextdosa);
-        jTextdosa.setBounds(190, 210, 180, 19);
+        jPanel1.add(jTextdosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 180, -1));
 
         jTextvada.setText("0");
         jTextvada.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,8 +163,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextvadaMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextvada);
-        jTextvada.setBounds(190, 250, 180, 19);
+        jPanel1.add(jTextvada, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 180, -1));
 
         jTextField5.setText("0");
         jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,8 +171,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextField5MouseClicked(evt);
             }
         });
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(190, 290, 180, 19);
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 180, -1));
 
         jTextpongal.setText("0");
         jTextpongal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,8 +179,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextpongalMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextpongal);
-        jTextpongal.setBounds(190, 330, 180, 19);
+        jPanel1.add(jTextpongal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 180, -1));
 
         jTextod.setText("0");
         jTextod.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,8 +187,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextodMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextod);
-        jTextod.setBounds(190, 370, 180, 19);
+        jPanel1.add(jTextod, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 180, -1));
 
         jTextmb.setText("0");
         jTextmb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -225,8 +200,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextmbActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextmb);
-        jTextmb.setBounds(190, 410, 180, 19);
+        jPanel1.add(jTextmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 180, -1));
 
         jTextvb.setText("0");
         jTextvb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,8 +208,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextvbMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextvb);
-        jTextvb.setBounds(190, 450, 180, 19);
+        jPanel1.add(jTextvb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 180, -1));
 
         jTextcb.setText("0");
         jTextcb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -243,18 +216,15 @@ public class foodbillings extends javax.swing.JFrame {
                 jTextcbMouseClicked(evt);
             }
         });
-        jPanel1.add(jTextcb);
-        jTextcb.setBounds(190, 490, 180, 19);
+        jPanel1.add(jTextcb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 490, 180, -1));
 
         EBPRICE.setEditable(false);
         EBPRICE.setText("90");
-        jPanel1.add(EBPRICE);
-        EBPRICE.setBounds(380, 530, 40, 19);
+        jPanel1.add(EBPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 40, -1));
 
         IDLYPRICE.setEditable(false);
         IDLYPRICE.setText("30");
-        jPanel1.add(IDLYPRICE);
-        IDLYPRICE.setBounds(380, 170, 40, 19);
+        jPanel1.add(IDLYPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 40, -1));
 
         DOSAPRICE.setEditable(false);
         DOSAPRICE.setText("35");
@@ -263,13 +233,11 @@ public class foodbillings extends javax.swing.JFrame {
                 DOSAPRICEActionPerformed(evt);
             }
         });
-        jPanel1.add(DOSAPRICE);
-        DOSAPRICE.setBounds(380, 210, 40, 19);
+        jPanel1.add(DOSAPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 40, -1));
 
         VADAPRICE.setEditable(false);
         VADAPRICE.setText("30");
-        jPanel1.add(VADAPRICE);
-        VADAPRICE.setBounds(380, 250, 40, 19);
+        jPanel1.add(VADAPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 40, -1));
 
         PURIPRICE.setEditable(false);
         PURIPRICE.setText("25");
@@ -278,8 +246,7 @@ public class foodbillings extends javax.swing.JFrame {
                 PURIPRICEActionPerformed(evt);
             }
         });
-        jPanel1.add(PURIPRICE);
-        PURIPRICE.setBounds(380, 290, 40, 19);
+        jPanel1.add(PURIPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 40, -1));
 
         PONGALPRICE.setEditable(false);
         PONGALPRICE.setText("40");
@@ -288,8 +255,7 @@ public class foodbillings extends javax.swing.JFrame {
                 PONGALPRICEActionPerformed(evt);
             }
         });
-        jPanel1.add(PONGALPRICE);
-        PONGALPRICE.setBounds(380, 330, 40, 19);
+        jPanel1.add(PONGALPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 40, -1));
 
         ODPRICE.setEditable(false);
         ODPRICE.setText("45");
@@ -298,13 +264,11 @@ public class foodbillings extends javax.swing.JFrame {
                 ODPRICEActionPerformed(evt);
             }
         });
-        jPanel1.add(ODPRICE);
-        ODPRICE.setBounds(380, 370, 40, 19);
+        jPanel1.add(ODPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 40, -1));
 
         MBPRICE.setEditable(false);
         MBPRICE.setText("25");
-        jPanel1.add(MBPRICE);
-        MBPRICE.setBounds(380, 410, 40, 19);
+        jPanel1.add(MBPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 40, -1));
 
         VBPRICE.setEditable(false);
         VBPRICE.setText("80");
@@ -313,13 +277,11 @@ public class foodbillings extends javax.swing.JFrame {
                 VBPRICEActionPerformed(evt);
             }
         });
-        jPanel1.add(VBPRICE);
-        VBPRICE.setBounds(380, 450, 40, 19);
+        jPanel1.add(VBPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, 40, -1));
 
         CBPRICE.setEditable(false);
         CBPRICE.setText("100");
-        jPanel1.add(CBPRICE);
-        CBPRICE.setBounds(380, 490, 40, 19);
+        jPanel1.add(CBPRICE, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, 40, -1));
 
         jButton1.setText("CALCULATE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -327,14 +289,11 @@ public class foodbillings extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(130, 640, 87, 21);
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 640, 120, -1));
 
         jLabel15.setText("EGG BIRIYANI:");
-        jPanel1.add(jLabel15);
-        jLabel15.setBounds(110, 530, 66, 20);
-        jPanel1.add(jtotal);
-        jtotal.setBounds(190, 590, 180, 19);
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 530, 90, 20));
+        jPanel1.add(jtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, 180, -1));
 
         jButton2.setText("BACK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -342,14 +301,11 @@ public class foodbillings extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(330, 640, 57, 21);
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 640, 80, -1));
 
         jLabel16.setText("Customer Mobile:");
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(108, 36, 120, 20);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(220, 30, 210, 19);
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 36, 120, 20));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 210, -1));
 
         jButton3.setText("CONFIRM");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -357,8 +313,7 @@ public class foodbillings extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(230, 690, 90, 21);
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 690, 90, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 740));
 
@@ -428,7 +383,7 @@ public class foodbillings extends javax.swing.JFrame {
         try {
             MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
             DB dbs = mongoClient.getDB("MongoHotel");
-            DBCollection coll = dbs.getCollection("food");
+            DBCollection coll = dbs.getCollection("hotelsystem");
             
             BasicDBObject updatedDocument = new BasicDBObject();
             updatedDocument.append("$set", new BasicDBObject().append("FoodTotal", jtotal.getText()));

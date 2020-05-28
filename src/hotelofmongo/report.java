@@ -6,6 +6,7 @@ package hotelofmongo;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import java.awt.Cursor;
 import java.net.UnknownHostException;
@@ -60,14 +61,14 @@ public class report extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Customer_Ref", "FirstName", "SurName", "Address 1", "Post Code", "Cusotmer Mobile", "Email ID", "Nationality", "ID Type", "Gender", "Room Type", "Room No", "Total", "Ftotal"
+                "Customer_Ref", "FirstName", "SurName", "Address 1", "Post Code", "Cusotmer Mobile", "Email ID", "Nationality", "ID Type", "Gender", "Check In Date", "Check out Date", "Date of Birth", "Room Type", "Room No", "Total", "Ftotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, true, true, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -114,17 +115,31 @@ public class report extends javax.swing.JFrame {
             MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
             DB dbs = mongoClient.getDB("MongoHotel");
             DBCollection coll = dbs.getCollection("hotelsystem");
-            DBCollection coll1 = dbs.getCollection("food");
             DBCursor cursor = coll.find();
-            DBCursor cursor1 = coll1.find();
             while(cursor.hasNext()){
-                while(cursor1.hasNext()){
-                    System.out.println("hotel system"+cursor.next().get("CustomerMobile"));
-                    System.out.println("food"+cursor1.next().get("CustomerMobile"));
-                }
-            }
-            
-            
+                    DBObject obj = cursor.next();
+                    String cref = (String)obj.get("CustomerRef");
+                    String fname = (String)obj.get("Firstname");
+                    String sname = (String)obj.get("Surname");
+                    String add = (String)obj.get("Surname");
+                    String post = (String)obj.get("Postcode");
+                    String cmobile = (String)obj.get("CustomerMobile");
+                    String email = (String)obj.get("Email");
+                    String nation = (String)obj.get("Nationality");
+                    String id = (String)obj.get("IDtype");
+                    String gender = (String)obj.get("Gender");
+                    String indate = (String)obj.get("Indate");
+                    String outdate = (String)obj.get("Outdate");
+                    String dob = (String)obj.get("Dob");
+                    String roomtype = (String)obj.get("Roomtype");
+                    String roomno = (String)obj.get("RoomNo");
+                    String total = (String)obj.get("Total");
+                    String ftotal = (String)obj.get("FoodTotal");
+                    
+                    model.addRow(new Object[] { cref,fname,sname,add,post,cmobile,email,nation,id,gender,indate,outdate,dob,roomtype,roomno,total,ftotal});
+                }            
+            jTable1.setModel(model);
+
         } catch (UnknownHostException ex) {
             Logger.getLogger(report.class.getName()).log(Level.SEVERE, null, ex);
         }
